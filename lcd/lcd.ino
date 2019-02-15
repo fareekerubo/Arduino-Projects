@@ -1,12 +1,36 @@
-/*
-* Arduino LCD Tutorial
-*
-* Crated by Dejan Nedelkovski,
-* www.HowToMechatronics.com
-*
-*/
-#include <LiquidCrystal.h> // includes the LiquidCrystal Library 
-LiquidCrystal lcd(4,6,11,12,13,14); // Creates an LC object. Parameters: (rs, enable, d4, d5, d6, d7) 
-void setup() { 
- lcd.begin(16,2); // Initializes the interface to the LCD screen, and specifies the dimensions (width and height) of the display } 
+#include<LiquidCrystal.h>
+String words;
+
+LiquidCrystal lcd(13,12,5,4,3,2);
+
+void setup()
+{
+    Serial.begin(9600);
+    lcd.begin(16,2);
+    lcd.setCursor(0,0);
+    lcd.print("Initialising.");
+    delay(1000);
+    lcd.clear();
+    lcd.print("Initialising..");
+    delay(1000);
+    lcd.clear();
+    lcd.print("Initialising...");
+    delay(1000);
+    lcd.clear();
+    lcd.print("FARIDA : KERUBO");
+    delay(2000);
+}
+
+void loop()
+{
+    lcd.clear();
+    Serial.print("Enter the line : ");
+    while (Serial.available()==0) {
+    }
+    words = Serial.readString();
+    Serial.println(words);
+    lcd.setCursor(0,0);
+    lcd.print(words);
+    delay(5000);
+    Serial.println(" ");
 }
